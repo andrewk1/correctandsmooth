@@ -2,15 +2,13 @@
 Correct&Smooth Implementation in numpy
 """
 import torch
-import torch_geometric
 
 from functools import lru_cache
 from tqdm import tqdm
+from torch_scatter import scatter
 
 
-def to_dense_adj(edge_index):
-    """"""
-    return torch_geometric.utils.to_dense_adj
+from .utils import to_dense_adj
 
 
 @lru_cache(maxsize=32)
@@ -23,12 +21,12 @@ def normalize_adj_matrix(edge_index):
     # Numerical errors from divide by 0, 
     # we follow the correction from the paper codebase at:
     # https://github.com/CUAI/CorrectAndSmooth/blob/b910314a59270984f5e249462ee3faa815fc9a0c/outcome_correlation.py#L77
-    D_inv_sqrt[D_inv_sqrt == float('inf')] = 0 # 
+    D_inv_sqrt[D_inv_sqrt == float('inf')] = 0
     S = D_inv_sqrt @ A @ D_inv_sqrt
     return S
 
 
-def smooth_operator(E, S, alpha = 0.8, eps = 1e-5, verbose=True):
+def smooth(E, S, alpha = 0.8, eps = 1e-5, verbose=True):
     """
     E^(t+1) = (1-alpha1)E + alpha * S @ E^(t) -> Ehat
     """
@@ -83,8 +81,8 @@ def correct_and_smooth(y, yhat,
     train_split_idxs = [ ix for ix in range(len(y)) if ix not in val_split_idxs ]
     S = normalize_adj_matrix(edge_index)
     E = residual_error(y, yhat, val_split_idxs)
-    Ehat = smooth_operator(E, S, verbose=verbose, alpha=alpha1, eps=eps1) # correct
+    Ehat = smooth(E, S, verbose=verbose, alpha=alpha1, eps=eps1) # correct
     G = autoscale(E, Ehat, yhat, train_split_idxs)
     G[train_split_idxs] = y[train_split_idxs]
-    yhat = smooth_operator(G, S, verbose=verbose, alpha=alpha1, eps=eps1) # smooth
+    yhat = smooth(G, S, verbose=verbose, alpha=alpha2, eps=eps2) # smooth
     return yhat
