@@ -11,7 +11,7 @@ from torch_scatter import scatter
 from .utils import to_dense_adj
 
 
-@lru_cache(maxsize=32)
+@lru_cache(maxsize=None)
 def normalize_adj_matrix(edge_index):
     """"""
     # TODO: Compute normalized adjancency matrix
@@ -66,6 +66,9 @@ def autoscale(E, Ehat, Z, train_split_idxs):
     Zr[train_split_idxs] = Z[train_split_idxs]
     return Zr
 
+def print_if_verbose(out, verbose):
+    if verbose:
+        print(out)
 
 def correct_and_smooth(y, yhat, 
                        edge_index, 
@@ -79,10 +82,13 @@ def correct_and_smooth(y, yhat,
     c&s full pipeline 
     """
     train_split_idxs = [ ix for ix in range(len(y)) if ix not in val_split_idxs ]
+    print_if_verbose("Normalizing Adj Matrix...", verbose)
     S = normalize_adj_matrix(edge_index)
     E = residual_error(y, yhat, val_split_idxs)
+    print_if_verbose("Smoothing errors...", verbose)
     Ehat = smooth(E, S, verbose=verbose, alpha=alpha1, eps=eps1) # correct
     G = autoscale(E, Ehat, yhat, train_split_idxs)
-    G[train_split_idxs] = y[train_split_idxs]
+    G[train_split_idxs] = y[train_split_idxs].type(torch.float32)
+    print_if_verbose("Smoothing predictions...", verbose)
     yhat = smooth(G, S, verbose=verbose, alpha=alpha2, eps=eps2) # smooth
     return yhat
