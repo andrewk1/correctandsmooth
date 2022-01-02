@@ -5,17 +5,15 @@ import torch
 
 from functools import lru_cache
 from tqdm import tqdm
-from torch_scatter import scatter
 
-
-from .utils import to_dense_adj
+from .utils import edge_index_to_sparse
 
 
 @lru_cache(maxsize=None)
 def normalize_adj_matrix(edge_index):
     """"""
     # TODO: Compute normalized adjancency matrix
-    A = to_dense_adj(edge_index).squeeze()
+    A = edge_index_to_sparse(edge_index).squeeze()
     D = torch.diag(A.sum(-1))
     D_inv_sqrt = D.pow(-0.5)
     # Numerical errors from divide by 0, 
@@ -66,9 +64,11 @@ def autoscale(E, Ehat, Z, train_split_idxs):
     Zr[train_split_idxs] = Z[train_split_idxs]
     return Zr
 
+
 def print_if_verbose(out, verbose):
     if verbose:
         print(out)
+
 
 def correct_and_smooth(y, yhat, 
                        edge_index, 
