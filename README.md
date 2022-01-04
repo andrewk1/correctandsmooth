@@ -13,8 +13,8 @@ training node features and labels. We've seen up to [20% increase in validation 
 #### Installation
 Install from source
 ```
-git clone https://github.com/andrewk1/correctandsmooth.git
-pip install correctandsmooth
+git clone https://github.com/andrewk1/correctandsmooth.git && cd correctandsmooth
+pip install .
 ```
 
 #### Usage
