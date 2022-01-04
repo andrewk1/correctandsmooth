@@ -1,5 +1,5 @@
 """
-Correct&Smooth Implementation in numpy
+Correct&Smooth Implementation in torch
 """
 import torch
 
