@@ -31,10 +31,10 @@ from cands import correct_and_smooth
 
 yhat_cands = correct_and_smooth(y, yhat, edge_index, val_split_idxs)
 ```
-Currently, C&S needs four arguments:\
+Currently, C&S needs four arguments:
 
 `y`: Your current labels in matrix form `(N, D)` where `N` is your dataset length and `D` is the number of classes.\
 `yhat`: Predictions of shape `(N, D)`\
-`edge_index`: Tensor of shape `(2, E)` where each column contains indices `0 <= i < N` of nodes with shared edges. `E` is the total edge count\
+`edge_index`: Tensor of shape `(2, E)`. Columns contain indices `0<=i<N` of nodes with shared edges. `E` is the total edge count\
 `val_split_idxs`: Indices of validation or unlabeled nodes (nodes not in the training set)\
 
