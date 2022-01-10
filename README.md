@@ -11,9 +11,9 @@ both traing and validation. After you have generated predictions, C&S will "smoo
 training node features and labels. We've seen up to [20% increase in validation performance](https://colab.research.google.com/drive/1RgRm-xKnKObYsHGbXB9TRYUKriAj3yV5?usp=sharing) when running C&S over neural network-based predictions on the features alone.
 
 #### Installation
-Install directly:
+Install the latest version with:
 ```
-pip install https://github.com/andrewk1/correctandsmooth/archive/master.zip
+pip install https://github.com/andrewk1/correctandsmooth/archive/refs/tags/v0.0.1.tar.gz
 ```
 
 Install from source
