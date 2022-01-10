@@ -1,7 +1,7 @@
 ### simple correct&smooth (cands)
 
-Simple implementation of [correct and smooth](https://arxiv.org/abs/2010.13993)(C&S) in pytorch.
-This is intended to be very quick for practictioners to pick up and run as a postprocessing step on your current classifiers.
+Simple implementation of [correct and smooth](https://arxiv.org/abs/2010.13993) (C&S) in pytorch.
+`cands` is intended to be very quick for practictioners to pick up and run as a postprocessing step on your current classifiers.
 While lots of data contains some form of graph structure, it is rarely used in practice due to the challenges of setting up
 GNNs or extracting manual graph features. 
 
@@ -11,7 +11,7 @@ both traing and validation. After you have generated predictions, C&S will "smoo
 training node features and labels. We've seen up to [20% increase in validation performance](https://colab.research.google.com/drive/1RgRm-xKnKObYsHGbXB9TRYUKriAj3yV5?usp=sharing) when running C&S over neural network-based predictions on the features alone.
 
 #### Installation
-Install directly
+Install directly:
 ```
 pip install https://github.com/andrewk1/correctandsmooth/archive/master.zip
 ```
@@ -21,6 +21,8 @@ Install from source
 git clone https://github.com/andrewk1/correctandsmooth.git && cd correctandsmooth
 pip install .
 ```
+
+`cands` has been tested on `torch>=1.9`.
 
 #### Usage
 C&S is a single postprocessing step applied to your predictions, we expose it via a function
