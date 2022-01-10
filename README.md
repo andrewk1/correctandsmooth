@@ -1,7 +1,7 @@
 ### simple correct&smooth (cands)
 
 Simple implementation of [correct and smooth](https://arxiv.org/abs/2010.13993) (C&S) in pytorch.
-`cands` is intended to be very quick for practictioners to pick up and run as a postprocessing step on your current classifiers.
+`cands` is intended to be very quick for practictioners to pick up and run as a postprocessing step on your current classifiers to add signal from existing (but unused) graph structure in your data.
 While lots of data contains some form of graph structure, it is rarely used in practice due to the challenges of setting up
 GNNs or extracting manual graph features. 
 
