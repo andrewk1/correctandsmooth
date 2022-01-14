@@ -82,7 +82,7 @@ def correct_and_smooth(y, yhat,
     """
     c&s full pipeline 
     """
-    y = F.one_hot(y, max(y))
+    y = F.one_hot(y, max(y) + 1)
     train_split_idxs = [ ix for ix in range(len(y)) if ix not in val_split_idxs ]
     print_if_verbose("Normalizing Adj Matrix...", verbose)
     S = normalize_adj_matrix(edge_index)
