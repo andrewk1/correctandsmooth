@@ -6,6 +6,7 @@ setup(name="cands",
       install_requires=[
         "torch>=1.6.0",
         "tqdm>=4.27",
-        "numpy"
+        "numpy",
+        "torch-geometric"
       ],
       )
