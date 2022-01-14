@@ -7,8 +7,7 @@ import torch.nn.functional as F
 from functools import lru_cache
 from tqdm import tqdm
 
-from .utils import edge_index_to_sparse, to_dense_adj
-
+from torch_geometric.utils import to_dense_adj
 
 @lru_cache(maxsize=None)
 def normalize_adj_matrix(edge_index):
