@@ -13,7 +13,7 @@ training node features and labels. We've seen up to [20% increase in validation 
 #### Installation
 Install the latest version with:
 ```
-pip install https://github.com/andrewk1/correctandsmooth/archive/refs/tags/v0.0.1.tar.gz
+pip install https://github.com/andrewk1/correctandsmooth/archive/refs/tags/v0.0.2.zip
 ```
 
 Install from source
