@@ -8,7 +8,7 @@ GNNs or extracting manual graph features.
 #### What tasks work well with C&S
 C&S works for transductive node classification tasks, which means that the graph itself remains static and accessible during
 both traing and validation. After you have generated predictions, C&S will "smooth" them using the neighboring
-training node features and labels. We've seen up to [20% increase in validation performance](https://colab.research.google.com/drive/1RgRm-xKnKObYsHGbXB9TRYUKriAj3yV5?usp=sharing) when running C&S over neural network-based predictions on the features alone.
+training node features and labels. We've seen up to [20% increase in validation performance](https://medium.com/stanford-cs224w/c-s-use-the-graph-structure-in-your-data-with-prediction-post-processing-ec36adb6d6a1) when running C&S over neural network-based predictions on the features alone.
 
 #### Installation
 Install the latest version with:
