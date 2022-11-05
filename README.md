@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/andrewk1/correctandsmooth/raw/master/cands.png">
+</p>
+
 ### simple correct&smooth (cands)
 
 Simple implementation of [correct and smooth](https://arxiv.org/abs/2010.13993) (C&S) in pytorch.
