@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/andrewk1/correctandsmooth/raw/master/cands.png">
+  <img src="https://github.com/andrewk1/correctandsmooth/raw/master/cands.png" height=200>
 </p>
 
 ### simple correct&smooth (cands)
